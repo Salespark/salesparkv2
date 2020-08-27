@@ -456,12 +456,9 @@ function saleSparkCartTrigger() {
         if (salesparkswal.isVisible()) {
             return;
         }
-        if(Array.isArray(addToCartPopUpData)) {
-            addToCartPopUpData = addToCartPopUpData[0];
-        }
         salesparkswal.fire({
             title: '',
-            html: addToCartPopUpData,
+            html: addToCartPopUpData[0],
             //input: 'email',
             //inputPlaceholder: addToCartPopUpData.email_placeholder,
             inputAutoTrim: true,
