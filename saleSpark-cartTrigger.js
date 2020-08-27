@@ -456,6 +456,9 @@ function saleSparkCartTrigger() {
         if (salesparkswal.isVisible()) {
             return;
         }
+        if(Array.isArray(addToCartPopUpData)) {
+            addToCartPopUpData = addToCartPopUpData[0];
+        }
         salesparkswal.fire({
             title: '',
             html: addToCartPopUpData,
