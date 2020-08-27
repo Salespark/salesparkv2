@@ -44,7 +44,7 @@ function removeGDPR() {
 function globalJavascript() {
 
     const webApi = "https://" + window.location.hostname + "/apps/storefront/api/storefront/";
-    const scriptBase = "https://cdn.jsdelivr.net/gh/salespark/salesparkv2@1.0.3/";
+    const scriptBase = "https://cdn.jsdelivr.net/gh/salespark/salesparkv2@1.0.4/";
     var sweetAlertIncluded = false;
     var store = {};
     this.init = function (callback, callbackArgs) {
