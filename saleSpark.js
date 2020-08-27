@@ -1,5 +1,5 @@
-// SaleSpark 2020 - Version 1.1.5
-//Changed on 22-June-2020
+// SaleSpark V2 2020 - Version 1.0.1
+//Changed on 27-August-2020
 function scriptInjection(src, callback) {
 
     var script = document.createElement('script');
