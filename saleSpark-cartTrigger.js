@@ -327,8 +327,10 @@ function saleSparkCartTrigger() {
                                 var cartData = data.cart;
                                 saleSparkCartTrigger.CartItemData = cartData;
                                 var addToCartPopUpData = globalJavascript.globalSettingsAndData.emailCollector;
-                                if (addToCartPopUpData.template.length > 0) {
-                                    checkAddToCartPopup(cartData, addToCartPopUpData.template, callBack, '');
+                                if(addToCartPopUpData != null) {
+                                    if (addToCartPopUpData.template.length > 0) {
+                                        checkAddToCartPopup(cartData, addToCartPopUpData.template, callBack, '');
+                                    }
                                 }
                                 enableEmailMagnet(cartData);
                                 var addToCartexitPopUpData = typeof (globalJavascript.globalSettingsAndData.exitpopup != 'undefined' && globalJavascript.globalSettingsAndData.exitpopup != null) ? globalJavascript.globalSettingsAndData.exitpopup : [];
