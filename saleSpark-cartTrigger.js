@@ -89,7 +89,7 @@ function saleSparkCartTrigger() {
 
 	function getCartFromCommandCenter(id, callback) {
 		salesparkJquery.ajax({
-			url: webApi + "/api/cart/store-front/" + id,
+			url: webApi + "get/cart/" + id,
 			data: {
 				store: store
 			},
@@ -125,7 +125,7 @@ function saleSparkCartTrigger() {
 		};
 
 		salesparkJquery.ajax({
-			url: webApi + "/api/cart/store-front/update-token/" + cart.id,
+			url: webApi + "cart/update-token/" + cart.id,
 			type: 'POST',
 			dataType: 'json',
 			data: data,
