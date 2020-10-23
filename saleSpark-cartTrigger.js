@@ -94,10 +94,16 @@ function saleSparkCartTrigger() {
 				store: store
 			},
 			success: function (response) {
-				if (!response.records.hasOwnProperty('cart')) {
-					window.location = '/cart';
-				} else {
-					callback(response.records.cart);
+				if(response.records.abandoned_checkout_url != '') {
+					window.location = response.records.abandoned_checkout_url;
+				}
+				else {
+					if (!response.records.hasOwnProperty('cart')) {
+						window.location = '/cart';
+					}
+					else {
+						callback(response.records.cart);
+					}
 				}
 			}
 		});
@@ -144,7 +150,7 @@ function saleSparkCartTrigger() {
 		var queryParametersArray = getQueryParameters();
 		if (typeof queryParametersArray != "undefined" && typeof queryParametersArray.recover_care_cart != 'undefined' && queryParametersArray.recover_care_cart != '') {
 			isCartLoading = 1;
-			salesparkJquery('body').html('Loading....');
+			// salesparkJquery('body').html('Loading....');
 			getCartFromCommandCenter(queryParametersArray.recover_care_cart, function (recoveryCart) {
 				recoverCart(cart, recoveryCart);
 			});
