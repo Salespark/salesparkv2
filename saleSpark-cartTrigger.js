@@ -88,6 +88,7 @@ function saleSparkCartTrigger() {
 	}
 
 	function getCartFromCommandCenter(id, callback) {
+
 		salesparkJquery.ajax({
 			url: webApi + "get/cart/" + id,
 			data: {
@@ -142,6 +143,36 @@ function saleSparkCartTrigger() {
 
 	}
 
+	function showLoadingAlert() {
+		let timerInterval;
+		salesparkswal.fire({
+			title: 'Recovering Your Cart',
+			html: 'Redirecting in few seconds...',
+			timer: 10000,
+			timerProgressBar: true,
+			willOpen: () => {
+				salesparkswal.showLoading()
+				timerInterval = setInterval(() => {
+					/*const content = Swal.getContent()
+					if (content) {
+						const b = content.querySelector('b')
+						if (b) {
+							b.textContent = Swal.getTimerLeft()
+						}
+					}*/
+				}, 100)
+			},
+			onClose: () => {
+				clearInterval(timerInterval)
+			}
+		}).then((result) => {
+			/* Read more about handling dismissals below */
+			if (result.dismiss === salesparkswal.DismissReason.timer) {
+				console.log('I was closed by the timer');
+			}
+		})
+	}
+
 
 	function isOnlyRecoverCart(cart) {
 		if (isCartLoading == 1) {
@@ -150,6 +181,7 @@ function saleSparkCartTrigger() {
 		var queryParametersArray = getQueryParameters();
 		if (typeof queryParametersArray != "undefined" && typeof queryParametersArray.recover_care_cart != 'undefined' && queryParametersArray.recover_care_cart != '') {
 			isCartLoading = 1;
+			showLoadingAlert();
 			// salesparkJquery('body').html('Loading....');
 			getCartFromCommandCenter(queryParametersArray.recover_care_cart, function (recoveryCart) {
 				recoverCart(cart, recoveryCart);
