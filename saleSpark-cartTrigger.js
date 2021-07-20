@@ -351,6 +351,7 @@ function saleSparkCartTrigger() {
 				}
 
 				if ((cartHash_cached != cartHash_live || impressionBy != '') && data.cart.item_count > 0) {
+					return;
 					salesparkJquery.ajax({
 						url: webApi + "cart/create",
 						dataType: 'json',
