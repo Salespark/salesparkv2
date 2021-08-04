@@ -70,7 +70,7 @@ function globalJavascript() {
                 type: 'GET',
                 data: {},
                 crossDomain: true,
-                async: true,
+                async: false,
                 success: function (response) {
                     if (response._metadata.message == 'success') {
                         globalJavascript.globalSettingsAndData = response.records;
