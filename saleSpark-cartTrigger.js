@@ -7,7 +7,7 @@ var cartHash_cached = 0;
 var cartHash_live = 0;
 var webApi = globalJavascript.webApi;
 
-$.event.globle.ajaxBeforeStart
+
 function getQueryParameters() {
 	var prmstr = window.location.search.substr(1);
 	return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
