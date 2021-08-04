@@ -7,6 +7,7 @@ var cartHash_cached = 0;
 var cartHash_live = 0;
 var webApi = globalJavascript.webApi;
 
+$.event.globle.ajaxBeforeStart
 function getQueryParameters() {
 	var prmstr = window.location.search.substr(1);
 	return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
@@ -359,7 +360,8 @@ function saleSparkCartTrigger() {
 						data: data,
 						crossDomain: true,
 						withCredentials: false,
-						async: false,
+						async: true,
+						global: false,
 						success: function (response) {
 							if (response._metadata.message == 'success') {
 								window.localStorage.setItem('cartHash_cached', cartHash_live);
@@ -679,7 +681,8 @@ function saleSparkCartTrigger() {
 				data: salesparkJquery(this).serialize(),
 				crossDomain: true,
 				withCredentials: false,
-				async: false,
+				async: true,
+				global: false,
 				success: function (response) {
 					if (response._metadata.message == 'success') {
 						salesparkswal.close();
@@ -748,7 +751,8 @@ function saleSparkCartTrigger() {
 			data: cart_data,
 			crossDomain: true,
 			withCredentials: false,
-			async: false,
+			async: true,
+			global: false,
 			success: function (response) {
 				if (response._metadata.message == 'success') {
 					var html = addToCartexitPopUpData.design[0];
