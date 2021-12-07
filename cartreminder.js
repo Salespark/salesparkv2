@@ -165,14 +165,11 @@ function salesParkCartReminder() {
         }
     }
 
-    $(window).focus(function() {
-        //Tab Focused
+    window.addEventListener("focus", function(event) {
         console.log("tab Active");
         clearInterval(reminderTimer);
         clearInterval(pushReminderTimer);
-    });
-
-
+    }, false);
 }
 var salesParkCartReminder = new salesParkCartReminder();
 salesParkCartReminder.init(salesParkCartReminder.process, [0]);
