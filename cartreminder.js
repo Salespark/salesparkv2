@@ -4,7 +4,8 @@ let sound = null;
 var setting = null;
 var reminderTimer = null;
 var pushReminderTimer = null;
-const apiRoot = "https://"+window.location.hostname+"/apps/storefront/";
+const apiRoot = "https://" + window.location.hostname + "/apps/storefront/";
+
 function transformToAssocArray(prmstr) {
     var params = {};
     var prmarr = prmstr.split("&");
@@ -14,10 +15,12 @@ function transformToAssocArray(prmstr) {
     }
     return params;
 }
+
 function getQueryParameters() {
     var prmstr = window.location.search.substr(1);
     return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
 }
+
 function salesParkCartReminder() {
     this.init = function (callback, callbackArgs) {
         /*xhr.open("GET", app_url + "api/cart-reminder/settings/" + shop);
@@ -36,18 +39,18 @@ function salesParkCartReminder() {
             callback.apply(this, callbackArgs);
         }
     }
-    this.process = function() {
+    this.process = function () {
         loadSound(setting);
         var queryParametersArray = getQueryParameters();
-        if(queryParametersArray.tryTitleBar == 'yes') {
-            if(globalJavascript.globalSettingsAndData.carteminder.is_title_bar_active !== null && globalJavascript.globalSettingsAndData.carteminder.is_title_bar_active == '1') {
-                if(globalJavascript.globalSettingsAndData.carteminder.title_bar_options.favicon_image !== null) {
+        if (queryParametersArray.tryTitleBar == 'yes') {
+            if (globalJavascript.globalSettingsAndData.carteminder.is_title_bar_active !== null && globalJavascript.globalSettingsAndData.carteminder.is_title_bar_active == '1') {
+                if (globalJavascript.globalSettingsAndData.carteminder.title_bar_options.favicon_image !== null) {
                     var faviconUrl = globalJavascript.globalSettingsAndData.carteminder.title_bar_options.favicon_image;
-                    if(faviconUrl != null) {
-                        faviconUrl = faviconUrl.replace("public","storage");
-                        faviconUrl = apiRoot+faviconUrl;
-                        console.log("fav icon = "+faviconUrl);
-                        (function() {
+                    if (faviconUrl != null) {
+                        faviconUrl = faviconUrl.replace("public", "storage");
+                        faviconUrl = apiRoot + faviconUrl;
+                        console.log("fav icon = " + faviconUrl);
+                        (function () {
                             var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
                             link.type = 'image/x-icon';
                             link.rel = 'shortcut icon';
@@ -57,12 +60,13 @@ function salesParkCartReminder() {
                         })();
                     }
                 }
-                if(globalJavascript.globalSettingsAndData.carteminder.title_bar_options.title !== null) {
+                if (globalJavascript.globalSettingsAndData.carteminder.title_bar_options.title !== null) {
                     titleScroller(globalJavascript.globalSettingsAndData.carteminder.title_bar_options.title);
                 }
             }
         }
     }
+
     function loadSound(setting) {
         if (setting.options.sound) {
             sound = new Audio(setting.options.sound_file);
@@ -70,10 +74,10 @@ function salesParkCartReminder() {
         }
     }
 
-    window.addEventListener('message', function(event) {
-        if(event.data == "salesparkcartcreated") {
+    window.addEventListener('message', function (event) {
+        if (event.data == "salesparkcartcreated") {
             // Do actions after cart creation
-            localStorage.setItem('salesparkcartcreated','yes');
+            localStorage.setItem('salesparkcartcreated', 'yes');
             // Do actions after cart creation
         }
         // console.log(event.data);    // Message from page script
@@ -87,31 +91,31 @@ function salesParkCartReminder() {
         }, 500);
     }
 
-    window.onblur = function() {
+    window.onblur = function () {
         //Tab Switched
-        if(localStorage.getItem('salesparkcartcreated') !== null) {
-            if(localStorage.getItem('salesparkcartcreated') == 'yes') {
+        if (localStorage.getItem('salesparkcartcreated') !== null) {
+            if (localStorage.getItem('salesparkcartcreated') == 'yes') {
                 console.log("tab Switched");
                 var interval = 5000;
                 var pushInterval = 5000;
-                if(globalJavascript.globalSettingsAndData.carteminder.title_bar_options.delay_interval !== null) {
-                    interval = globalJavascript.globalSettingsAndData.carteminder.title_bar_options.delay_interval*1000;
+                if (globalJavascript.globalSettingsAndData.carteminder.title_bar_options.delay_interval !== null) {
+                    interval = globalJavascript.globalSettingsAndData.carteminder.title_bar_options.delay_interval * 1000;
                 }
 
-                if(globalJavascript.globalSettingsAndData.carteminder.reminder_time !== null) {
-                    pushInterval = globalJavascript.globalSettingsAndData.carteminder.reminder_time*1000;
+                if (globalJavascript.globalSettingsAndData.carteminder.reminder_time !== null) {
+                    pushInterval = globalJavascript.globalSettingsAndData.carteminder.reminder_time * 1000;
                 }
-                console.log("interval = "+interval);
-                console.log("pushinterval = "+pushInterval);
-                if(globalJavascript.globalSettingsAndData.carteminder.is_title_bar_active !== null && globalJavascript.globalSettingsAndData.carteminder.is_title_bar_active == '1') {
+                console.log("interval = " + interval);
+                console.log("pushinterval = " + pushInterval);
+                if (globalJavascript.globalSettingsAndData.carteminder.is_title_bar_active !== null && globalJavascript.globalSettingsAndData.carteminder.is_title_bar_active == '1') {
                     reminderTimer = setInterval(function () {
-                        if(globalJavascript.globalSettingsAndData.carteminder.title_bar_options.favicon_image !== null) {
+                        if (globalJavascript.globalSettingsAndData.carteminder.title_bar_options.favicon_image !== null) {
                             var faviconUrl = globalJavascript.globalSettingsAndData.carteminder.title_bar_options.favicon_image;
-                            if(faviconUrl != null) {
-                                faviconUrl = faviconUrl.replace("public","storage");
-                                faviconUrl = apiRoot+faviconUrl;
-                                console.log("fav icon = "+faviconUrl);
-                                (function() {
+                            if (faviconUrl != null) {
+                                faviconUrl = faviconUrl.replace("public", "storage");
+                                faviconUrl = apiRoot + faviconUrl;
+                                console.log("fav icon = " + faviconUrl);
+                                (function () {
                                     var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
                                     link.type = 'image/x-icon';
                                     link.rel = 'shortcut icon';
@@ -121,16 +125,16 @@ function salesParkCartReminder() {
                                 })();
                             }
                         }
-                        if(globalJavascript.globalSettingsAndData.carteminder.title_bar_options.title !== null) {
+                        if (globalJavascript.globalSettingsAndData.carteminder.title_bar_options.title !== null) {
                             titleScroller(globalJavascript.globalSettingsAndData.carteminder.title_bar_options.title);
                         }
                         clearInterval(reminderTimer);
-                    },interval);
+                    }, interval);
                 }
-                if(globalJavascript.globalSettingsAndData.carteminder.is_active !== null && globalJavascript.globalSettingsAndData.carteminder.is_active == '1') {
-                    if(localStorage.getItem('localNotifPermission') !== null || Push.Permission.has()) {
-                        if(localStorage.getItem('localNotifPermission') == 'yes' || Push.Permission.has()) {
-                            localStorage.setItem('localNotifPermission','yes');
+                if (globalJavascript.globalSettingsAndData.carteminder.is_active !== null && globalJavascript.globalSettingsAndData.carteminder.is_active == '1') {
+                    if (localStorage.getItem('localNotifPermission') !== null || Push.Permission.has()) {
+                        if (localStorage.getItem('localNotifPermission') == 'yes' || Push.Permission.has()) {
+                            localStorage.setItem('localNotifPermission', 'yes');
                             pushReminderTimer = setInterval(function () {
                                 const pushOptions = {
                                     body: setting.body,
@@ -156,7 +160,7 @@ function salesParkCartReminder() {
                                 }
                                 Push.create(setting.title, pushOptions);
                                 clearInterval(pushReminderTimer);
-                            },pushInterval);
+                            }, pushInterval);
                         }
                     }
                 }
@@ -165,12 +169,13 @@ function salesParkCartReminder() {
         }
     }
 
-    window.addEventListener("focus", function(event) {
+    window.addEventListener("focus", function (event) {
         console.log("tab Active");
         clearInterval(reminderTimer);
         clearInterval(pushReminderTimer);
     }, false);
 }
+
 var salesParkCartReminder = new salesParkCartReminder();
 salesParkCartReminder.init(salesParkCartReminder.process, [0]);
 

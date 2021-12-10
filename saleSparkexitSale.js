@@ -4,9 +4,15 @@ function getNow() {
         min = d.getMinutes(),
         sec = d.getSeconds();
 
-    if (hrs < 10) { hrs = "0" + hrs; }
-    if (min < 10) { min = "0" + min; }
-    if (sec < 10) { sec = "0" + sec; }
+    if (hrs < 10) {
+        hrs = "0" + hrs;
+    }
+    if (min < 10) {
+        min = "0" + min;
+    }
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
 
     return hrs + ":" + min + ":" + sec;
 }
@@ -58,7 +64,7 @@ function exitPopup() {
             }).then(function (result) {
             });
 
-            if(Notifsettings.is_active == '1') {
+            if (Notifsettings.is_active == '1') {
                 scheduleBrowserNotif();
             }
 
@@ -80,7 +86,7 @@ function exitPopup() {
     }
 
     this.process = function (callback, callbackArgs) {
-        if(Notifsettings.is_active == '1') {
+        if (Notifsettings.is_active == '1') {
             //notifyMe(Notifsettings);
         }
     }
